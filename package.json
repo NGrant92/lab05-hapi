@@ -9,6 +9,7 @@
   "author": "NGrant",
   "license": "ISC",
   "dependencies": {
+    "handlebars": "^4.0.10",
     "hapi": "^16.6.0",
     "inert": "^4.2.1"
   },
