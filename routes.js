@@ -1,7 +1,9 @@
 const Controller = require('./controller.js');
 
+//returns this info if called
 module.exports = [
-
-  { method: 'GET', path: '/', config: Controller.index },
-
+  {
+    //METHOD = get, path = /, config = controller.js/index()
+    method: 'GET', path: '/', config: Controller.index
+  }
 ];
