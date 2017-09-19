@@ -1,4 +1,3 @@
-
 //index method
 exports.index = {
 
@@ -6,5 +5,4 @@ exports.index = {
   handler: function (request, reply) {
     reply('Hello!');
   }
-
 };
