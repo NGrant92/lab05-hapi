@@ -9,6 +9,16 @@
   "author": "NGrant",
   "license": "ISC",
   "dependencies": {
-    "hapi": "^16.6.0"
-  }
+    "hapi": "^16.6.0",
+    "inert": "^4.2.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NGrant92/lab05-hapi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NGrant92/lab05-hapi/issues"
+  },
+  "homepage": "https://github.com/NGrant92/lab05-hapi#readme"
 }

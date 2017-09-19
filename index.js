@@ -7,17 +7,19 @@ const Hapi = require('hapi');
 let server = new Hapi.Server();
 
 //setting the server connection to localhost:4000
-server.connection({port: process.env.PORT || 4000});
+server.connection({ port: process.env.PORT || 4000 });
 
+server.register(require('inert'), err => {
 //setting server route to routes.js
-server.route(require('./routes'));
+  server.route(require('./routes'));
 
 //making server accessible it'll throw an error there is one
-server.start(err => {
-  if(err){
-    throw err;
-  }
+  server.start(err => {
+    if (err) {
+      throw err;
+    }
 
-  //console message
-  console.log('server listening at: ', server.info.uri);
+    //console message
+    console.log('server listening at: ', server.info.uri);
+  });
 });
