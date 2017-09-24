@@ -18,32 +18,20 @@
 </section>
 <br>
 <body>
-<div class="ui container two column grid basic middle aligned segment">
+<div class="ui container two column grid middle aligned segment">
   <section class="column">
-    <img class="ui image" src="http://res.cloudinary.com/ngrant/image/upload/v1506255274/LhFydmk_ueraaq.png">
+    <img class="ui medium image" src="http://res.cloudinary.com/ngrant/image/upload/v1506255277/Homer_Simpson_Vector_by_bark2008_bt6ayq.png">
   </section>
   <section class="column">
-    <form class="ui stacked segment form" action="/register" method="POST">
-      <h3 class="ui header">Register</h3>
-      <div class="two fields">
-        <div class="field">
-          <label>First Name</label>
-          <input placeholder="First Name" type="text" name="firstname">
-        </div>
-        <div class="field">
-          <label>Last Name</label>
-          <input placeholder="Last Name" type="text" name="lastname">
-        </div>
+    <form class="ui stacked segment form" action="/authenticate" method="POST">
+      <h3 class="ui header">Log-in</h3>
+      <div class="field">
+        <label>Email</label> <input placeholder="Email" name="email" value = "homer@simpson.com">
       </div>
       <div class="field">
-        <label>Email</label>
-        <input placeholder="Email" type="text" name="email">
+        <label>Password</label> <input placeholder="Password" type="password"  name="password" value = "secret">
       </div>
-      <div class="field">
-        <label>Password</label>
-        <input placeholder="Password" type="password" name="password">
-      </div>
-      <button class="ui blue submit button">Submit</button>
+      <button class="ui blue submit button">Login</button>
     </form>
   </section>
 </div>
