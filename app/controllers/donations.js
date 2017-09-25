@@ -11,7 +11,11 @@ exports.home = {
 exports.report = {
 
   handler: function (request, reply) {
-    reply.view('report', { title: 'Donations to Date', });
+    reply.view('report', {
+      title: 'Donations to Date',
+      currentUser: this.currentUser,
+      donations: this.donations,
+    });
   },
 
 };
@@ -19,6 +23,11 @@ exports.report = {
 exports.donate = {
 
   handler: function (request, reply) {
+    let donation = request.payload;
+
+    donation.donor = this.currentUser.firstName + ' ' + this.currentUser.lastName;
+    console.log(donation);
+    this.donations.push(donation);
     reply.redirect('/report');
   },
 };
