@@ -9,7 +9,12 @@ let server = new Hapi.Server();
 //setting the server connection to localhost:4000
 server.connection( { port: process.env.PORT || 4000 } );
 
+server.bind({
+  donations: [],
+});
+
 server.register([require('inert'), require('vision')], err => {
+
   if (err) {
     throw err;
   }
@@ -20,6 +25,9 @@ server.register([require('inert'), require('vision')], err => {
     },
     relativeTo: __dirname,
     path: './app/views',
+    layoutPath: './app/views/layout',
+    partialsPath: './app/views/partials',
+    layout: true,
     isCached: false,
   });
 
