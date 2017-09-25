@@ -19,11 +19,11 @@ module.exports = [
   {
     method: 'GET',
     path: '/signup',
-    config: SignUp.home,
+    config: Donations.signup,
   },
   {
     method: 'GET',
     path: '/login',
-    config: Login.home,
+    config: Donations.login,
   }
 ];
