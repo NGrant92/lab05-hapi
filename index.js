@@ -7,7 +7,7 @@ const Hapi = require('hapi');
 let server = new Hapi.Server();
 
 //setting the server connection to localhost:4000
-server.connection({ port: process.env.PORT || 4000 });
+server.connection( { port: process.env.PORT || 4000 } );
 
 server.register([require('inert'), require('vision')], err => {
   if (err) {
