@@ -7,11 +7,16 @@
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.js"></script>
   <link rel="stylesheet" media="screen" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css">
   <link rel="stylesheet" media="screen" href="css/main.css">
-  <link rel="shortcut icon" type="image/png" href="http://res.cloudinary.com/ngrant/image/upload/v1505837241/favicon_phz974.png">
+  <link rel="shortcut icon" type="image/png" href="images/favicon.png">
 </head>
 <body>
 <section class="ui container">
   {{{content}}}
 </section>
+<script>
+  $(document).ready(function () {
+    $('.ui.dropdown').dropdown({ on: 'hover' });
+  });
+</script>
 </body>
 </html>

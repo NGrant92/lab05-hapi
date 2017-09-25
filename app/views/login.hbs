@@ -1,39 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>{{title}}</title>
-  <meta charset="UTF-8">
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.js"></script>
-  <link rel="stylesheet" media="screen" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css">
-  <link rel="shortcut icon" type="image/png" href="http://res.cloudinary.com/ngrant/image/upload/v1505837241/favicon_phz974.png">
-</head>
-<body>
-  <section class="ui container">
-    <nav class="ui inverted menu">
-      <header class="header item"><a href="/">Donation</a></header>
-      <div class="right menu">
-        <a class="item" href="/signup">SignUp</a>
-        <a class="item" href="/login">Login</a>
-      </div>
-    </nav>
-    <section class="ui two column grid middle aligned segment">
-      <aside class="ui six wide column">
-        <img class="ui medium image" src="http://res.cloudinary.com/ngrant/image/upload/v1506255277/Homer_Simpson_Vector_by_bark2008_bt6ayq.png">
-      </aside>
-      <div class="ten wide column">
-        <form class="ui stacked segment form" action="/authenticate" method="POST">
+{{> welcomemenu }}
+
+<section class="ui raised segment">
+  <div class="ui grid">
+    <aside class="ui six wide column">
+      <img src="images/homer2.png" class="ui medium image">
+    </aside>
+    <div class="ui ten wide column fluid form">
+      <div class="ui stacked segment">
+        <form action="/login" method="POST">
           <h3 class="ui header">Log-in</h3>
           <div class="field">
-            <label>Email</label> <input placeholder="Email" name="email" value = "homer@simpson.com">
+            <label>Email</label> <input placeholder="Email" type="text" name="email">
           </div>
           <div class="field">
-            <label>Password</label> <input placeholder="Password" type="password"  name="password" value = "secret">
+            <label>Password</label> <input type="password" name="password">
           </div>
           <button class="ui blue submit button">Login</button>
         </form>
       </div>
-    </section>
-  </section>
-</body>
-</html>
+    </div>
+  </div>
+</section>
