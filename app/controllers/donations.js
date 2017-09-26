@@ -17,16 +17,14 @@ exports.report = {
       donations: this.donations,
     });
   },
-
 };
 
 exports.donate = {
 
   handler: function (request, reply) {
     let donation = request.payload;
-
-    donation.donor = this.currentUser.firstName + ' ' + this.currentUser.lastName;
-    console.log(donation);
+    let donorEmail = request.auth.credentials.loggedInUser;
+    donation.donor = this.users[donorEmail];
     this.donations.push(donation);
     reply.redirect('/report');
   },
