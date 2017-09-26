@@ -55,18 +55,17 @@ exports.userRegister = {
 };
 
 exports.viewSettings = {
-  auth: false,
   handler: function (request, reply) {
-    console.log(request.auth.credentials.loggedInUser);
-    reply.view('/settings', {
+    const userEmail = request.auth.credentials.loggedInUser;
+    console.log(this.currentUser);
+    reply.view('settings', {
       title: 'User Settings',
-      user: request.auth.credentials.loggedInUser,
+      user: this.users[userEmail],
     });
   },
 };
 
 exports.updateSettings = {
-  auth: false,
   handler: function (request, reply) {
     this.users[request.auth.credentials.loggedInUser] = request.payload;
     reply.redirect('/settings');
