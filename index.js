@@ -7,13 +7,15 @@ const Hapi = require('hapi');
 let server = new Hapi.Server();
 
 //setting the server connection to localhost:4000
-server.connection( { port: process.env.PORT || 4000 } );
+server.connection({ port: process.env.PORT || 4000 });
 
-server.bind({
-  //currentUser: {},
-  users: [],
-  donations: [],
-});
+require('./app/models/db');
+
+//server.bind({
+//currentUser: {},
+//users: [],
+//donations: [],
+//});
 
 server.register([require('inert'), require('vision'), require('hapi-auth-cookie')], err => {
 

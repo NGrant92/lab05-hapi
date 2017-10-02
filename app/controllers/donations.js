@@ -5,7 +5,6 @@ exports.home = {
   handler: function (request, reply) {
     reply.view('home', { title: 'Make a Donation' });
   },
-
 };
 
 exports.report = {
