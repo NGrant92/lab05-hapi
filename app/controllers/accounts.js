@@ -86,6 +86,8 @@ exports.updateSettings = {
       return user.save();
     }).then(user => {
       reply.view('settings', { title: 'Edit Account Settings', user: user });
+    }).catch(err => {
+      reply.redirect('/');
     });
   },
 };
