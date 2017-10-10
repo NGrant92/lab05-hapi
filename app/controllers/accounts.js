@@ -136,7 +136,7 @@ exports.updateSettings = {
 
     failAction: function (request, reply, source, error) {
       reply.view('signup', {
-        title: 'Sign up error',
+        title: 'Update error',
         errors: error.data.details,
       }).code(400);
     },

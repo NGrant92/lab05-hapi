@@ -11,6 +11,8 @@
           <th>Amount</th>
           <th>Method donated</th>
           <th>Donor</th>
+          <th>Candidate</th>
+          <th>Total</th>
         </tr>
         </thead>
         <tbody>
@@ -19,8 +21,17 @@
             <td> {{amount}} </td>
             <td> {{method}} </td>
             <td> {{donor.firstName}} {{donor.lastName}} </td>
+            <td> {{candidate.lastName}}, {{candidate.firstName}} </td>
+            <td></td>
           </tr>
         {{/each}}
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>€{{total}}</td>
+          </tr>
         </tbody>
       </table>
     </article>
