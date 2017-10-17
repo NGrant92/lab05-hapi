@@ -49,6 +49,7 @@ server.register([require('inert'), require('vision'), require('hapi-auth-cookie'
 
   //setting server route to routes.js
   server.route(require('./routes'));
+  server.route(require('./routesapi'));
 
   //making server accessible it'll throw an error there is one
   server.start(err => {
