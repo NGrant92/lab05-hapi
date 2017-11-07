@@ -19,17 +19,21 @@ exports.find = {
 };
 
 exports.findOne = {
+
   auth: false,
 
-  handler: function(request, reply) {
-    Candidate.findOne({ _id: request.params.id })
-      .then(candidate => {
+  handler: function (request, reply) {
+    Candidate.findOne({ _id: request.params.id }).then(candidate => {
+      if (candidate !== null) {
         reply(candidate);
-      })
-      .catch(err => {
-        reply(Boom.notFound("id not found"));
-      });
-  }
+      }
+
+      reply(Boom.notFound('id not found'));
+    }).catch(err => {
+      reply(Boom.notFound('id not found'));
+    });
+  },
+
 };
 
 exports.create = {
