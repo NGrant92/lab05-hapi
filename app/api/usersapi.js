@@ -1,73 +1,81 @@
-'use strict';
+"use strict";
 
-const assert = require('chai').assert;
-const DonationService = require('./donation-service');
-const fixtures = require('./fixtures.json');
-const _ = require('lodash');
+const User = require("../models/user");
+const Boom = require("boom");
 
-suite('Candidate API tests', function () {
+exports.find = {
+  auth: false,
 
-  let candidates = fixtures.candidates;
-  let newCandidate = fixtures.newCandidate;
+  handler: function(request, reply) {
+    User.find({})
+      .exec()
+      .then(candiates => {
+        reply(candiates);
+      })
+      .catch(err => {
+        reply(Boom.badImplementation("error accessing db"));
+      });
+  }
+};
 
-  const donationService = new DonationService('http://localhost:4000');
+exports.findOne = {
 
-  beforeEach(function () {
-    donationService.deleteAllCandidates();
-  });
+  auth: false,
 
-  afterEach(function () {
-    donationService.deleteAllCandidates();
-  });
+  handler: function (request, reply) {
+    User.findOne({ _id: request.params.id }).then(user => {
+      if (user !== null) {
+        reply(user);
+      }
 
-  test('create a candidate', function () {
-    const returnedCandidate = donationService.createCandidate(newCandidate);
-    assert(_.some([returnedCandidate], newCandidate), 'returnedCandidate must be a superset of newCandidate');
-    assert.isDefined(returnedCandidate._id);
-  });
+      reply(Boom.notFound('id not found'));
+    }).catch(err => {
+      reply(Boom.notFound('id not found'));
+    });
+  },
 
-  test('get candidate', function () {
-    const c1 = donationService.createCandidate(newCandidate);
-    const c2 = donationService.getCandidate(c1._id);
-    assert.deepEqual(c1, c2);
-  });
+};
 
-  test('get invalid candidate', function () {
-    const c1 = donationService.getCandidate('1234');
-    assert.isNull(c1);
-    const c2 = donationService.getCandidate('012345678901234567890123');
-    assert.isNull(c2);
-  });
+exports.create = {
+  auth: false,
 
-  test('delete a candidate', function () {
-    const c = donationService.createCandidate(newCandidate);
-    assert(donationService.getCandidate(c._id) != null);
-    donationService.deleteOneCandidate(c._id);
-    assert(donationService.getCandidate(c._id) == null);
-  });
+  handler: function(request, reply) {
+    const user = new User(request.payload);
+    user
+      .save()
+      .then(newUser => {
+        reply(newUser).code(201);
+      })
+      .catch(err => {
+        reply(Boom.badImplementation("error creating user"));
+      });
+  }
+};
 
-  test('get all candidates', function () {
-    for (let c of candidates) {
-      donationService.createCandidate(c);
-    }
+exports.deleteAll = {
+  auth: false,
 
-    const allCandidates = donationService.getCandidates();
-    assert.equal(allCandidates.length, candidates.length);
-  });
+  handler: function(request, reply) {
+    User.remove({})
+      .then(err => {
+        reply().code(204);
+      })
+      .catch(err => {
+        reply(Boom.badImplementation("error removing users"));
+      });
+  }
+};
 
-  test('get candidates detail', function () {
-    for (let c of candidates) {
-      donationService.createCandidate(c);
-    }
+exports.deleteOne = {
+  auth: false,
 
-    const allCandidates = donationService.getCandidates();
-    for (var i = 0; i < candidates.length; i++) {
-      assert(_.some([allCandidates[i]], candidates[i]), 'returnedCandidate must be a superset of newCandidate');
-    }
-  });
-
-  test('get all candidates empty', function () {
-    const allCandidates = donationService.getCandidates();
-    assert.equal(allCandidates.length, 0);
-  });
-});
+  handler: function(request, reply) {
+    User.remove({ _id: request.params.id })
+      .then(user => {
+        reply(user).code(204);
+      })
+      .catch(err => {
+        reply(Boom.notFound("id not found"));
+      });
+  }
+};
