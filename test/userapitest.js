@@ -12,9 +12,17 @@ suite('User API tests', function () {
 
   const donationService = new DonationService('http://localhost:4000');
 
+  beforeEach(function () {
+    donationService.deleteAllUsers();
+  });
+
+  afterEach(function () {
+    donationService.deleteAllUsers();
+  });
+
   test('create a user', function () {
     const returnedUser = donationService.createUser(newUser);
-    assert(_.some([returnedUser], newUser),  'returned User must be a superset of newUser');
+    assert(_.some([returnedUser], newUser), 'returnedUser must be a superset of newUser');
     assert.isDefined(returnedUser._id);
   });
 
@@ -61,12 +69,5 @@ suite('User API tests', function () {
   test('get all users empty', function () {
     const allUsers = donationService.getUsers();
     assert.equal(allUsers.length, 0);
-  });
-
-  test('delete a user', function () {
-    const u = donationService.createUser(newUser);
-    assert(donationService.getUser(u._id) != null);
-    donationService.deleteOneUser(u._id);
-    assert(donationService.getUser(u._id) == null);
   });
 });

@@ -32,20 +32,20 @@ suite('Donation API tests', function () {
 
   test('create multiple donations', function () {
     const returnedCandidate = donationService.createCandidate(newCandidate);
-    for (var i = 0; i < donations.length; i++) {
+    for (let i = 0; i < donations.length; i++) {
       donationService.makeDonation(returnedCandidate._id, donations[i]);
     }
 
     const returnedDonations = donationService.getDonations(returnedCandidate._id);
     assert.equal(returnedDonations.length, donations.length);
-    for (var i = 0; i < donations.length; i++) {
+    for (let i = 0; i < donations.length; i++) {
       assert(_.some([returnedDonations[i]], donations[i]), 'returned donation must be a superset of donation');
     }
   });
 
   test('delete all donations', function () {
     const returnedCandidate = donationService.createCandidate(newCandidate);
-    for (var i = 0; i < donations.length; i++) {
+    for (let i = 0; i < donations.length; i++) {
       donationService.makeDonation(returnedCandidate._id, donations[i]);
     }
 
