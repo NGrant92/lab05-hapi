@@ -62,7 +62,7 @@ class DonationService {
   }
 
   deleteCandidateDonations(id) {
-    return this.httpService.delete('/api/donations/' + id);
+    return this.httpService.delete('/api/candidates/' + id + '/donations');
   }
 }
 

@@ -59,13 +59,16 @@ suite('Donation API tests', function () {
 
   test('delete candidate donations', function () {
     const returnedCandidate = donationService.createCandidate(newCandidate);
-    for (let i = 0; i < donations.length; i++) {
+    const oldDonationLength = donations.length;
+    for (let i = 0; i < oldDonationLength; i++) {
       donationService.makeDonation(returnedCandidate._id, donations[i]);
     }
 
     const d1 = donationService.getDonations(returnedCandidate._id);
     assert.equal(d1.length, donations.length);
-    donationService.deleteAllDonations();
+
+    donationService.deleteCandidateDonations(returnedCandidate._id);
+
     const d2 = donationService.getDonations(returnedCandidate._id);
     assert.equal(d2.length, 0);
   });
