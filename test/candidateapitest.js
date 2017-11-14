@@ -11,6 +11,7 @@ suite('Candidate API tests', function () {
   let newCandidate = fixtures.newCandidate;
 
   const donationService = new DonationService('http://localhost:4000');
+  //const donationService = new DonationService(fixtures.donationService);
 
   test('create a candidate', function () {
     const returnedCandidate = donationService.createCandidate(newCandidate);
